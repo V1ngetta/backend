@@ -4,6 +4,8 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+console.log('--- SERVER FILE STARTED ---');
+
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
