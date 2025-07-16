@@ -32,9 +32,14 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 // ✅ Тестовый роут к базе
 app.get('/users', async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+    try {
+      const users = await prisma.user.findMany();
+      res.json(users);
+    } catch (err) {
+      console.error('Error fetching users:', err);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception:', err);
